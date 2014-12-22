@@ -15,8 +15,8 @@
   </filter>
   <filter-mapping>
     <filter-name>CheckLogin</filter-name>
-    <url-pattern>/html/login.html</url-pattern>
-    <servlet-name>DisplayServlet</servlet-name>
+    <servlet-name>LoginDisplayServlet</servlet-name>
+    <servlet-name>ScoreDisplayServlet</servlet-name>
   </filter-mapping>
   <filter>
     <filter-name>CheckExist</filter-name>
@@ -43,12 +43,20 @@
     <url-pattern>/LogoutServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>DisplayServlet</servlet-name>
-    <servlet-class>servlets.DisplayServlet</servlet-class>
+    <servlet-name>LoginDisplayServlet</servlet-name>
+    <servlet-class>servlets.display.LoginDisplayServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>DisplayServlet</servlet-name>
-    <url-pattern>/DisplayServlet</url-pattern>
+    <servlet-name>LoginDisplayServlet</servlet-name>
+    <url-pattern>/LoginDisplayServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ScoreDisplayServlet</servlet-name>
+    <servlet-class>servlets.display.ScoreDisplayServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ScoreDisplayServlet</servlet-name>
+    <url-pattern>/ScoreDisplayServlet</url-pattern>
   </servlet-mapping>
   <error-page>
     <error-code>404</error-code>

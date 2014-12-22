@@ -24,10 +24,10 @@ import util.Constants;
 
 public class CheckLoginFilter implements Filter {
 
-	private static final String LOGIN_URI = "/login.html" ;
-	private static final String DISPLAY_URI = "/DisplayServlet" ;
+	private static final String LOGIN_URI = "/LoginDisplayServlet" ;
+	private static final String DISPLAY_URI = "/ScoreDisplayServlet" ;
 	private static final String DISPLAY_HTML = Constants.PROJECT_CONTEXT + DISPLAY_URI ;
-	private static final String LOGIN_HTML = Constants.PROJECT_CONTEXT + Constants.HTML_CONTEXT + LOGIN_URI ;
+	private static final String LOGIN_HTML = Constants.PROJECT_CONTEXT + LOGIN_URI ;
     /**
      * Default constructor. 
      */

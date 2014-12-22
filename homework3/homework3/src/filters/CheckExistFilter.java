@@ -22,7 +22,7 @@ import database.StudentFinder;
 
 public class CheckExistFilter implements Filter {
 
-	private static final String LOGIN_HTML = Constants.PROJECT_CONTEXT + Constants.HTML_CONTEXT + "/login.html" ;
+	private static final String LOGIN_HTML = Constants.PROJECT_CONTEXT + "/LoginDisplayServlet" ;
 	private static final String NO_USER_HTML = Constants.ERROR_CONTEXT + "/noUser.html" ;
 
 	/**

@@ -18,7 +18,7 @@ import util.Constants;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	private static final String DISPLAY_HTML = Constants.PROJECT_CONTEXT + "/DisplayServlet" ;
+	private static final String DISPLAY_HTML = Constants.PROJECT_CONTEXT + "/ScoreDisplayServlet" ;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)

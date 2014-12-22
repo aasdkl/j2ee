@@ -19,7 +19,7 @@ import util.Constants;
 public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	private static final String LOGIN_HTML = Constants.PROJECT_CONTEXT + Constants.HTML_CONTEXT + "/login.html" ;
+	private static final String LOGIN_HTML = Constants.PROJECT_CONTEXT + "/LoginDisplayServlet" ;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
