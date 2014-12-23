@@ -31,6 +31,7 @@ public class LogoutServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		session.setAttribute("isLogin",false);
+		session.setAttribute("logId", "");
 		
 		response.getWriter().print("<html><head><title>登出成功</title></head><body>正在跳转……</body></html>");
 		

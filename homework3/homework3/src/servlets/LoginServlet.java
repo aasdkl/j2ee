@@ -1,12 +1,19 @@
 package servlets;
 
 import java.io.IOException;
+import java.net.CookieStore;
 
+import javax.print.attribute.ResolutionSyntax;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.ws.RespectBinding;
+import javax.xml.ws.Response;
+
+import com.sun.xml.internal.bind.v2.model.core.ID;
 
 import listeners.LoginListener;
 import util.Constants;
@@ -31,6 +38,11 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		session.setAttribute("isLogin", true);
 		session.setAttribute("logId", request.getParameter("logId"));
+		
+		Cookie cookie = new Cookie("logId", request.getParameter("logId"));
+		cookie.setMaxAge(Constants.ONE_DAY);
+		response.addCookie(cookie);
+		
 		// 设置人数
 		LoginListener.userLogin();
 		
