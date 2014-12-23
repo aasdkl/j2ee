@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import listeners.LoginListener;
 import util.Constants;
-
 import database.ScoreFinder;
 import database.StudentFinder;
 
@@ -83,6 +83,7 @@ public class ScoreDisplayServlet extends HttpServlet {
 		htmlString.append("<a href=\"");
 		htmlString.append(response.encodeURL(LOGOUT_HTML));
 		htmlString.append("\">退出登录</a>");
+		htmlString.append("<br/>总用户数："+LoginListener.getAllCount()+"，已登录用户数："+LoginListener.getLogCount()+"，游客数："+LoginListener.getTravelCount());
 
 		htmlString.append("</body></html>");
 		
