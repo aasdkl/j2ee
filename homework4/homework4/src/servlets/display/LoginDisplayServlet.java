@@ -3,16 +3,18 @@ package servlets.display;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import listeners.LoginListener;
-import sun.util.logging.resources.logging;
 import util.Constants;
+import vo.UserCount;
 
 /**
  * Servlet implementation class LoginDisplayServlet
@@ -20,7 +22,8 @@ import util.Constants;
 //@WebServlet("/LoginDisplayServlet")
 public class LoginDisplayServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private static final String LOGIN_HTML = Constants.HTML_CONTEXT+ "/login.jsp" ;
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -45,24 +48,15 @@ public class LoginDisplayServlet extends HttpServlet {
 				if (eachCookie.getName().equals("logId")) {
 					username=eachCookie.getValue();
 					break;
-					
 				}
 			}
 		}
-		StringBuilder str = new StringBuilder();
-		str.append("<!DOCTYPE html><html><head><meta http-equiv='Cache-Control' content='no-cache'><meta http-equiv='Pragma' content='no-cache'><meta http-equiv='expires' content='0'><meta charset='UTF-8'><title>请登录</title></head>");
-		str.append("<body><header id='title'><h1>登录</h1></header>");
-		str.append("<div id='main'><form role='form' id='loginForm' action='"+Constants.PROJECT_CONTEXT+"/LoginServlet' method='get'>");
-		str.append("<!--[if IE]>帐号：<![endif]--><input type='text' name='logId' id='logId' placeholder='请在此输入学号' value='");
-		str.append(username);
-		str.append("' required='required'><br/>");
-		str.append("<!--[if IE]>密码：<![endif]--><input type='password' name='logPassword' id='logPassword' placeholder='请在此输入密码' value='");
-		str.append("' required='required'><br/>");
-		str.append("<input type='submit' id='submit' value='登录(Enter)'></form>");
-		str.append("</div>");
-		str.append("<br/>总用户数："+LoginListener.getAllCount()+"，已登录用户数："+LoginListener.getLogCount()+"，游客数："+LoginListener.getTravelCount());
-		str.append("</body></html>");
-		response.getWriter().print(str.toString());
+
+		session.setAttribute("username", username);
+		session.setAttribute("userCount", new UserCount(LoginListener.getAllCount(), LoginListener.getLogCount(), LoginListener.getTravelCount()));
+
+		request.getRequestDispatcher(response.encodeURL(LOGIN_HTML)).forward(request, response);
+
 	}
 
 	/**
