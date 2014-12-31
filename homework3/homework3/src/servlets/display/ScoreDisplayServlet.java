@@ -33,7 +33,6 @@ public class ScoreDisplayServlet extends HttpServlet {
      */
     public ScoreDisplayServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -88,13 +87,6 @@ public class ScoreDisplayServlet extends HttpServlet {
 		htmlString.append("</body></html>");
 		
 		response.getWriter().print(htmlString.toString());;
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 }

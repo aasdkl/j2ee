@@ -1,8 +1,6 @@
-<%@page import="java.util.Iterator"%>
-<%@ page language="java" pageEncoding="utf-8"%>
-<%@ page import="util.Constants"%>
-<jsp:useBean id="userCount" scope="session" type="vo.UserCount" />
-<jsp:useBean id="userScore" scope="session" type="vo.UserScore" />
+<%@ page import="java.util.Iterator, util.Constants, vo.ScoreVO" language="java" pageEncoding="utf-8"%>
+<jsp:useBean id="userCount" scope="session" type="vo.OnlineUserVO" />
+<jsp:useBean id="userScore" scope="session" type="vo.ScoreListVO" />
 
 <!DOCTYPE html>
 <html>
@@ -18,23 +16,25 @@
 		<h1>成绩查看</h1>
 	</header>
 	<div id='main'>
-		<%=userScore.getUserName()%>, 你好。<br>
+		<%=userScore.getStudentName()%>, 你好。<br>
 		你的成绩如下：<br>
 		<table>
 			<tr><th>课程号</th><th>课程名</th><th>成绩</th></tr>
-		<% Iterator<String[]> t = userScore.getScores();
+		<% Iterator<ScoreVO> t = userScore.getScores();
 		while (t.hasNext()) { 
-			String[] eachScoreSet = (String[]) t.next();%>
+			ScoreVO eachScore = t.next();%>
 			<tr><td>
-			<%=eachScoreSet[0]%>
+			<%=eachScore.getCourseId()%>
 			</td><td>
-			<%=eachScoreSet[1]%>
-			<%if (Integer.parseInt(eachScoreSet[2])<Constants.NoPassScore) {// 不及格%>
+			<%=eachScore.getCourseName()%>
+			<%
+				if (!eachScore.isPass()) {// 不及格
+			%>
 				</td><td style='color:red'>
 			<%} else {%>
 				</td><td>
 			<%}%>
-			<%=eachScoreSet[2]%>
+			<%=eachScore.getScore()%>
 			</td></tr>
 		<%}%>
 		

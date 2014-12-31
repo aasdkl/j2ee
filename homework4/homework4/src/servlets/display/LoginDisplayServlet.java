@@ -14,7 +14,7 @@ import javax.websocket.Session;
 
 import listeners.LoginListener;
 import util.Constants;
-import vo.UserCount;
+import vo.OnlineUserVO;
 
 /**
  * Servlet implementation class LoginDisplayServlet
@@ -29,7 +29,6 @@ public class LoginDisplayServlet extends HttpServlet {
      */
     public LoginDisplayServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -53,17 +52,11 @@ public class LoginDisplayServlet extends HttpServlet {
 		}
 
 		session.setAttribute("username", username);
-		session.setAttribute("userCount", new UserCount(LoginListener.getAllCount(), LoginListener.getLogCount(), LoginListener.getTravelCount()));
+		session.setAttribute("userCount", new OnlineUserVO(LoginListener.getAllCount(), LoginListener.getLogCount(), LoginListener.getTravelCount()));
 
 		request.getRequestDispatcher(response.encodeURL(LOGIN_HTML)).forward(request, response);
 
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
 
 }

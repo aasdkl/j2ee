@@ -26,7 +26,6 @@ public class LoginDisplayServlet extends HttpServlet {
      */
     public LoginDisplayServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -65,11 +64,5 @@ public class LoginDisplayServlet extends HttpServlet {
 		response.getWriter().print(str.toString());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
 
 }

@@ -42,12 +42,12 @@ public class CheckExistFilter implements Filter {
 			String pw = (String) req.getParameter("logPassword");
 			
 			if (id==null || id.equals("") || pw==null || pw.equals("")) {
-				// TODO 错误页面
+				// 错误页面
 				resp.sendRedirect(resp.encodeURL(NO_USER_HTML));
 				return;
 			} else {
 				if (!new StudentFinder().isLoginSuccess(id, pw)) {
-//					// TODO 不存在
+//					// 不存在
 					resp.sendRedirect(resp.encodeURL(NO_USER_HTML));
 					return;
 				}

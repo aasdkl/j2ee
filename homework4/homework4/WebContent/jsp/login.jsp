@@ -1,14 +1,16 @@
-<%@ page language="java" pageEncoding="utf-8"%>
-<%@ page import="util.Constants"%>
-<jsp:useBean id="userCount" scope="session" type="vo.UserCount" />
+<%@ page session="true" import="util.Constants" language="java"
+	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<jsp:useBean id="userCount" scope="session" type="vo.OnlineUserVO" />
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv='Cache-Control' content='no-cache'>
-<meta http-equiv='Pragma' content='no-cache'>
-<meta http-equiv='expires' content='0'>
-<meta charset='UTF-8'>
+<%
+	response.setHeader("Pragma", "No-cache");
+	response.setHeader("Cache-Control", "no-store");
+	response.setHeader("Cache-Control", "no-cache");
+	response.setDateHeader("Expires", 0);
+%>
 <title>请登录</title>
 </head>
 <body>

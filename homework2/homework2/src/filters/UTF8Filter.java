@@ -18,16 +18,12 @@ public class UTF8Filter implements Filter {
     /**
      * Default constructor. 
      */
-    public UTF8Filter() {
-        // TODO Auto-generated constructor stub
-    }
+    public UTF8Filter() {}
 
 	/**
 	 * @see Filter#destroy()
 	 */
-	public void destroy() {
-		// TODO Auto-generated method stub
-	}
+	public void destroy() {}
 
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
@@ -44,7 +40,6 @@ public class UTF8Filter implements Filter {
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
 	}
 
 }

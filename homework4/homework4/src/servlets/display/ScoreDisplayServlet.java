@@ -1,6 +1,7 @@
 package servlets.display;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.servlet.ServletException;
@@ -10,18 +11,21 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import listeners.LoginListener;
+import model.dao.ScoreDAO;
+import model.dao.StudentDAO;
+import model.dao.factory.DAOFactory;
+import model.dao.factory.DAOFactoryImpl;
+import model.dao.impl.ScoreDAOImpl;
+import model.dao.impl.StudentDAOImpl;
+import model.po.CoursePO;
+import model.po.ScorePO;
+import model.po.StudentPO;
 import util.Constants;
-import vo.UserCount;
-import vo.UserScore;
-import database.ScoreFinder;
-import database.StudentFinder;
+import vo.OnlineUserVO;
+import vo.ScoreListVO;
+import vo.ScoreVO;
 
 /**
- * 学生登录，跟据学生的ID，查询当前课程成绩, 并根据成绩，确定返回结果
-有不及格课程：警示页面
-正常结果：标准页面
-未知的学生ID：错误页面
-
  * Servlet implementation class DisplayServlet
  */
 //@WebServlet("/DisplayServlet")
@@ -35,7 +39,6 @@ public class ScoreDisplayServlet extends HttpServlet {
      */
     public ScoreDisplayServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -43,26 +46,31 @@ public class ScoreDisplayServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		StudentFinder studentFinder = new StudentFinder();
-		ScoreFinder scoreFinder = new ScoreFinder();
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("logId");
 
-		UserCount uCount = (UserCount) session.getAttribute("userCount");
+		DAOFactory dao = DAOFactoryImpl.getInstance();
+
+		StudentPO studentPO = dao.getStudentDAO().get(id).next();
+		Iterator<ScorePO> scores = dao.getScoreDAO().get(id);
+		
+		ScoreListVO scoreListVO = new ScoreListVO(studentPO);
+		
+		while (scores.hasNext()) {
+			ScorePO scorePO = (ScorePO) scores.next();
+			CoursePO coursePO = dao.getCourseDAO().get(String.valueOf(scorePO.getCourse())).next();
+			ScoreVO scoreVO = new ScoreVO(scorePO, coursePO);
+			scoreListVO.addScore(scoreVO);
+		}
+		
+		session.setAttribute("userScore", scoreListVO);
+
+		OnlineUserVO uCount = (OnlineUserVO) session.getAttribute("userCount");
 		uCount.setCounts(LoginListener.getAllCount(), LoginListener.getLogCount(), LoginListener.getTravelCount());
 		session.setAttribute("userCount", uCount);
-
-		UserScore uScore = new UserScore(studentFinder.getStudentName(id), scoreFinder.getStudentScore(id));
-		session.setAttribute("userScore", uScore);
 		
 		request.getRequestDispatcher(response.encodeURL(DISPLAY_HTML)).forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
 
 }

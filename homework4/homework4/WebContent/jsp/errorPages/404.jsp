@@ -1,5 +1,4 @@
-<%@ page language="java" pageEncoding="utf-8"%>
-<%@ page import="util.Constants"%>
+<%@ page session="false" import="util.Constants" language="java" pageEncoding="utf-8"%>
 
 <!DOCTYPE html>
 <html>
