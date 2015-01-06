@@ -66,7 +66,6 @@ public final class DaoHelper implements IDaoHelper {
 				++i;
 			}
 			try(ResultSet result = statement.executeQuery()) {
-				//!修改jsp的scope为request，修改<%%>为getProperty，EL表达式
 				//处理 result to po
 				if (query.isRequiredPO()) {
 					resultObject = ConvertResultSetToPO.parseDataEntityBeans(result, query.getPoName());

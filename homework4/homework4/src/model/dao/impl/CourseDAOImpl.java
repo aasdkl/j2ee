@@ -13,19 +13,16 @@ public final class CourseDAOImpl implements CourseDAO {
 
 	@Override
 	public boolean add(CoursePO coursePO) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean remove(CoursePO coursePO) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean update(CoursePO coursePO) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

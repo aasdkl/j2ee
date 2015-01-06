@@ -19,19 +19,16 @@ public final class ScoreDAOImpl implements ScoreDAO {
 
 	@Override
 	public boolean add(ScorePO scorePO) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean remove(ScorePO scorePO) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean update(ScorePO scorePO) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
